@@ -1,0 +1,82 @@
+.ecard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(90deg, #f8c7ff, #acd8ff);
+    padding: 16px;  /* Add padding for smaller screens */
+  }
+  
+  .ecard {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    max-width: 400px;
+    text-align: center;
+    font-family: "Arial", sans-serif;
+    width: 100%;  /* Ensure responsiveness for smaller screens */
+
+  }
+  
+  .ecard h1 {
+    /*font-size: 24px;*/
+    font-size: clamp(1.5rem, 5vw, 2.5rem);  /* Dynamic font sizing */
+    margin-bottom: 16px;
+    color: #6a1b9a;
+    white-space: pre-wrap;
+  }
+  
+  .ecard p {
+    /* font-size: 16px; */
+    font-size: clamp(1rem, 3vw, 1.25rem);  /* Dynamic font sizing for paragraphs */
+    margin-bottom: 16px;
+    color: #4a4a4a;
+    white-space: pre-wrap;
+  }
+  
+  .ecard button {
+    background: #8e24aa;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    /* font-size: 16px; */
+    font-size: clamp(1rem, 2.5vw, 1.25rem); /* Dynamically scale the button text */
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .ecard button:hover {
+    background: #6a1b9a;
+  }
+
+  .ecard-image {
+    width: 80%; /* Scale the image to fit the card */
+    max-width: 400px; /* Ensure it doesn’t exceed a specific width */
+    height: auto; /* Maintain the aspect ratio */
+    border-radius: 8px;
+    margin-bottom: 4px;
+  }
+
+
+@media (max-width: 768px) {
+   .ecard {
+       padding: 16px; /* Reduce padding for smaller screens */
+   }
+ 
+   .ecard h1 {
+       font-size: clamp(1.25rem, 6vw, 2rem); /* Adjust title font size for smaller devices */
+   }
+
+  .ecard p {
+      font-size: clamp(0.875rem, 4vw, 1rem); /* Scale paragraph font size for smaller devices */
+  }
+
+  .ecard button {
+      padding: 10px 20px; /* Adjust button size for smaller screens */
+  }
+}
+  
+  
+  
