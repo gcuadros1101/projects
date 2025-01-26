@@ -6,7 +6,7 @@ const GamePage = () => {
     return (
         <div className="GamePage-container">
             <h1>Game Page</h1>
-            <DraggableList items={'Lorem ipsum dolor sit'.split(' ')} />
+            <DraggableList items={'I P B T K I N L H'.split(' ')} />
         </div>
     );
 };
