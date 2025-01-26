@@ -1,6 +1,6 @@
 // src/App.tsx
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import GamePage from "./pages/GamePage";
@@ -24,7 +24,7 @@ const App: React.FC = () => {
     }, [user]);
 
     return (
-        <Router basename="/projects">
+        <Router>
             <Routes>
                 {/* Root route logic */}
                 <Route
