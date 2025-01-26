@@ -31,40 +31,48 @@ const App: React.FC = () => {
                     path="/"
                     element={
                         user?.eligibility
-                            ? <Navigate to="/home" replace />
-                            : <Navigate to="/login" replace />
+                            ? <Navigate to="/projects/home" replace />
+                            : <Navigate to="/projects/login" replace />
+                    }
+                />
+
+                {/* Root route logic */}
+                <Route
+                    path="/projects"
+                    element={
+                        user?.eligibility
+                            ? <Navigate to="/projects/home" replace />
+                            : <Navigate to="/projects/login" replace />
                     }
                 />
 
                 {/* Login route */}
-                <Route path="/login" element={<Login setUser={setUser} />} />
+                <Route path="/projects/login" element={<Login setUser={setUser} />} />
 
                 {/* Home route */}
                 <Route
-                    path="/home"
+                    path="/projects/home"
                     element={
                         user?.eligibility ? (
                             <Home userId={user.userId} />
                         ) : (
-                            <Navigate to="/login" replace />
+                            <Navigate to="/projects/login" replace />
                         )
                     }
                 />
 
                 {/* Game route */}
                 <Route
-                    path="/game"
+                    path="/projects/game"
                     element={
                         user?.eligibility ? (
                             <GamePage />
                         ) : (
-                            <Navigate to="/login" replace />
+                            <Navigate to="/projects/login" replace />
                         )
                     }
                 />
 
-                {/* Example redirect for projects */}
-                <Route path="/projects" element={<Navigate to="/game" replace />} />
             </Routes>
         </Router>
     );

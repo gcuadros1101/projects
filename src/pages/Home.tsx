@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ECard from "../components/ECard/ECard";
-import GamePage from "../pages/GamePage";
 import RSVPModal from "../components/RSVPModal/RSVPModal";
 import Toast from "../components/Toast"; 
 
@@ -68,7 +67,7 @@ const Home: React.FC<HomeProps> = ({ userId }) => {
                 eventDescription2="Come enjoy lunch and games as we prepare to welcome their bundle of joy!"
                 image="https://mkcuadros.github.io/projects/ptj_icon.png/400x200?text=You're+Invited!"
                 onRSVP={() => setModalOpen(true)}
-                onReveal={() => navigate("/game")}  // Use navigate for routing
+                onReveal={() => navigate("/projects/game")}  // Use navigate for routing
             />
             <RSVPModal
                 isOpen={isModalOpen}
