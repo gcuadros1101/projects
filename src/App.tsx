@@ -24,51 +24,41 @@ const App: React.FC = () => {
     }, [user]);
 
     return (
-        <Router>
+        <Router basename="/projects">
             <Routes>
                 {/* Root route logic */}
                 <Route
                     path="/"
                     element={
                         user?.eligibility
-                            ? <Navigate to="/projects/home" replace />
-                            : <Navigate to="/projects/login" replace />
-                    }
-                />
-
-                {/* Root route logic */}
-                <Route
-                    path="/projects"
-                    element={
-                        user?.eligibility
-                            ? <Navigate to="/projects/home" replace />
-                            : <Navigate to="/projects/login" replace />
+                            ? <Navigate to="/card" replace />
+                            : <Navigate to="/login" replace />
                     }
                 />
 
                 {/* Login route */}
-                <Route path="/projects/login" element={<Login setUser={setUser} />} />
+                <Route path="/login" element={<Login setUser={setUser} />} />
 
                 {/* Home route */}
                 <Route
-                    path="/projects/home"
+                    path="/card"
                     element={
                         user?.eligibility ? (
                             <Home userId={user.userId} />
                         ) : (
-                            <Navigate to="/projects/login" replace />
+                            <Navigate to="/login" replace />
                         )
                     }
                 />
 
                 {/* Game route */}
                 <Route
-                    path="/projects/game"
+                    path="/game"
                     element={
                         user?.eligibility ? (
                             <GamePage />
                         ) : (
-                            <Navigate to="/projects/login" replace />
+                            <Navigate to="/login" replace />
                         )
                     }
                 />

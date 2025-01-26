@@ -24,7 +24,7 @@ const Login: React.FC<LoginProps> = ({ setUser }) => {
         // Simulate a successful response for the hardcoded number
         setUser({ userId: 1, eligibility: true }); // Use any mock userId
         console.log("Development phone number detected, bypassing API.");
-        navigate("/projects/home");
+        navigate("/card");
         return;
     }
 
