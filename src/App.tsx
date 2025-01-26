@@ -1,6 +1,6 @@
 // src/App.tsx
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import GamePage from "./pages/GamePage";
@@ -31,7 +31,7 @@ const App: React.FC = () => {
                     path="/"
                     element={
                         user?.eligibility
-                            ? <Navigate to="/home" replace />
+                            ? <Navigate to="/card" replace />
                             : <Navigate to="/login" replace />
                     }
                 />
@@ -41,7 +41,7 @@ const App: React.FC = () => {
 
                 {/* Home route */}
                 <Route
-                    path="/home"
+                    path="/card"
                     element={
                         user?.eligibility ? (
                             <Home userId={user.userId} />
@@ -63,8 +63,6 @@ const App: React.FC = () => {
                     }
                 />
 
-                {/* Example redirect for projects */}
-                <Route path="/projects" element={<Navigate to="/game" replace />} />
             </Routes>
         </Router>
     );

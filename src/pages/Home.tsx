@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ECard from "../components/ECard/ECard";
-import GamePage from "../pages/GamePage";
 import RSVPModal from "../components/RSVPModal/RSVPModal";
 import Toast from "../components/Toast"; 
 
