@@ -6,7 +6,7 @@ import Login from "./pages/Login";
 import GamePage from "./pages/GamePage";
 
 const App: React.FC = () => {
-    const [user, setUser] = useState<{ userId: number; eligibility: boolean } | null>(null);
+    const [user, setUser] = useState<{ userId: string; eligibility: boolean } | null>(null);
 
     // Optional: Load user from localStorage on initial render
     useEffect(() => {

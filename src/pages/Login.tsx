@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { fetchUserIdByPhone } from "../service/api";
+import { parse } from "path";
 
 type User = {
-  userId: number;
+  userId: string;
   eligibility: boolean;
 };
 
@@ -22,31 +24,24 @@ const Login: React.FC<LoginProps> = ({ setUser }) => {
     
     if (phone === DEV_PHONE) {
         // Simulate a successful response for the hardcoded number
-        setUser({ userId: 1, eligibility: true }); // Use any mock userId
+        setUser({ userId: "1", eligibility: true}); // Use any mock userId
         console.log("Development phone number detected, bypassing API.");
         navigate("/card");
         return;
     }
 
     try {
-      const response = await fetch("https://your-api-gateway-url.com/whoAmI", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ phone }),
-      });
 
-      if (response.ok) {
-        const data = await response.json();
-
-        if (data.eligibility) {
-          setUser({ userId: data.userId, eligibility: data.eligibility });
-        } else {
-          setErrorMessage("Sorry, we don't recognize this number. Is there another number?");
-        }
-      } else {
-        setErrorMessage("There was a problem verifying your phone number. Please try again.");
+      const fetchedUserId = await fetchUserIdByPhone(phone);
+      if (fetchedUserId) {
+        //const eligibility = await fetchUserEligibility(parsed_body.userId);
+        setUser({ userId: fetchedUserId, eligibility: true});  // TODO: update "eligibility=true" placeholder with getUserEligibility endpoint
+        console.log("User recognized. Navigating to Card.");
+        navigate("/card");
+          return;
+      }
+      else {
+        setErrorMessage("Sorry, we don't recognize this number. Is there another number?");
       }
     } catch (error) {
       console.error("Error during API call:", error);

@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import ECard from "../components/ECard/ECard";
 import RSVPModal from "../components/RSVPModal/RSVPModal";
 import Toast from "../components/Toast"; 
+import { fetchUserIdByPhone, fetchUserEligibility, updateRSVP } from "../service/api";
 
 type HomeProps = {
-    userId: number; // Or string, depending on the type of userId
+    userId: string; // Or string, depending on the type of userId
 };
 
 const Home: React.FC<HomeProps> = ({ userId }) => {
@@ -14,27 +15,27 @@ const Home: React.FC<HomeProps> = ({ userId }) => {
     const [responseMessage, setResponseMessage] = useState(""); // Initialize state
     const navigate = useNavigate(); // React Router hook for navigation
 
+    console.log(`userId: ${userId}`);
+
+    // TODO: the next ~10 lines are experimental; it's safe and can fetch, but not properly access the eligibility
+    const getUserEligibility = async () => {
+        try { 
+            return await fetchUserEligibility(userId);
+    
+        } catch (error) {
+            console.log("Error occurred. TODO: improve me.");
+        } finally {
+            console.log("update finally");
+        }
+    }
+    let fetchedEligibility = getUserEligibility();
+    console.log(`fetchedEligibility: ${fetchedEligibility}`);
+
     const handleRSVP = async (rsvp: boolean) => {
         try {
-            const userId = 123;              // TODO: update placeholder user ID
-            const payload = {userId, rsvp};  // Construct the API request payload
+            let rsvpCallStatus = await updateRSVP(userId, rsvp);
+            console.log(`rsvpCallStatus: ${rsvpCallStatus}`);
 
-            // Send the POST request
-            const response = await fetch("https://your-api-endpoint.com/updateRSVP", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload),
-            });
-
-            // Check if the response status is not OK
-            if (!response.ok) {
-                throw new Error(`Server responded with status ${response.status}`);
-            }
-        
-            const data = await response.json();
-            console.log("Response data:", data);
-
-        
             // Display a different message based on the RSVP response
             setResponseMessage(
                 rsvp
