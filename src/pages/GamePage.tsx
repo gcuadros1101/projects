@@ -1,6 +1,6 @@
 import React from 'react';
 import DraggableList from '../components/DraggableList';
-import '../App.css'; // Make sure your App.css is imported
+import '../App.css';
 
 const GamePage = () => {
     return (
