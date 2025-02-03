@@ -1,0 +1,26 @@
+.navigate-button {
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* Soft pink gradient */
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 2s ease-in-out;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navigate-button:hover {
+  background: linear-gradient(135deg, #fad0c4, #ff9a9e); /* Slight variation on hover */
+  transform: scale(1.05);
+}
+
+.navigate-button:active {
+  transform: scale(0.95);
+}
+
+.button-container {
+  margin-top: calc(15px + 4vmin);
+  text-align: center;
+}
