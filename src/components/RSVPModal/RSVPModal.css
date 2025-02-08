@@ -48,7 +48,9 @@
     flex-wrap: wrap;
     gap: 12px; /* Add spacing between buttons */
     justify-content: center;
+    align-items: center; /* Align vertically */
     margin-bottom: 16px;
+    width: 100%; /* Ensure container takes full width */
   }
   
   /* Button styling */
@@ -116,12 +118,16 @@
     }
   
     .modal-button {
+      width: auto; /* Prevent buttons from stretching too much */
+      max-width: 80%; /* Keep buttons from becoming too wide */
+      text-align: center; /* Ensure button text remains centered */
       padding: 10px 14px; /* Smaller buttons */
       font-size: 0.9rem;
     }
   
     .modal-buttons {
       flex-direction: column; /* Stack buttons vertically */
+      align-items: center; /* Center align stacked buttons */
     }
   }
   

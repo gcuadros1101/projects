@@ -60,8 +60,8 @@ const Home: React.FC<HomeProps> = ({ userId }) => {
     return (
         <div>
             <ECard
-                eventTitle={"Little one on the way!"}
-                eventDescription={"Please join us for a baby shower in honor of\nGiancarlo & Michelle Cuadros"}
+                eventTitle={"a little cutie on the way!"}
+                eventDescription={"Please join us for a baby shower for\nGiancarlo & Michelle Cuadros"}
                 eventDate="Saturday, April 26th, 2025"
                 eventTime={"\n11:30am - 2:00pm"}
                 eventLocation={"Potrero Launch Community Room\n2235 3rd St, San Francisco, CA"}

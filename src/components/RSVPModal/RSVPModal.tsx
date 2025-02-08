@@ -21,7 +21,7 @@ const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose, onRSVP }) => {
             Yes, I'll be there!
           </button>
           <button className="modal-button no" onClick={() => onRSVP(false)}>
-            Sorry, I won't make it
+            Won't make it
           </button>
         </div>
         <button className="modal-close-button" onClick={onClose}>

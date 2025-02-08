@@ -1,6 +1,6 @@
 import React from "react";
 import "./ecard.css";
-import inviteImage from "../../assets/images/kangaroo.png";
+import inviteImage from "../../assets/images/cutie3.png";
 
 
 type ECardProps = {

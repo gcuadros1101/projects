@@ -1,34 +1,23 @@
 .content {
-    width: 320px;
+    width: 100%;
   }
   
   .content > div {
+    flex: 0 0 auto;
     position: absolute;
-    width: 320px;
-    height: 80px;
+    width: 100%;
+    min-width: 8px;  /* Optional: keeps the div from becoming too narrow on smaller screens */
+    max-width: 20px;  /* Optional: keeps the div from becoming too wide on larger screens */
+    height: 0px;
+    max-height: 20px; 
     transform-origin: 50% 50% 0px;
-    border-radius: 5px;
-    color: white;
-    line-height: 40px;
-    padding-left: 32px;
-    font-size: 14.5px;
-    background: lightblue;
+    border-radius: 10px;
+    color: rgb(0, 0, 0);
+    line-height: 2%;
+    padding: calc(12px + 3vmin);
+    font-size: calc(10px + 2vmin);
+    font-weight: bold;
+    background: linear-gradient(135deg, #f8c7ff, #acd8ff);  /* lightblue; */
     text-transform: uppercase;
-    letter-spacing: 2px;
     touch-action: none;
   }
-  
-  .content > div:nth-child(1) {
-    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
-  }
-  .content > div:nth-child(2) {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  }
-  .content > div:nth-child(3) {
-    background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);
-  }
-  .content > div:nth-child(4) {
-    background: linear-gradient(135deg, #c3cfe2 0%, #c3cfe2 100%);
-  }
-  
-  
