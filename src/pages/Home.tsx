@@ -13,6 +13,7 @@ const Home: React.FC<HomeProps> = ({ userId }) => {
 
     const [isModalOpen, setModalOpen] = useState(false);
     const [responseMessage, setResponseMessage] = useState(""); // Initialize state
+    const [isEligible, setIsEligible] = useState(false); // State to track eligibility for registry link
     const navigate = useNavigate(); // React Router hook for navigation
 
     console.log(`userId: ${userId}`);
@@ -20,8 +21,9 @@ const Home: React.FC<HomeProps> = ({ userId }) => {
     // TODO: the next ~10 lines are experimental; it's safe and can fetch, but not properly access the eligibility
     const getUserEligibility = async () => {
         try { 
-            return await fetchUserEligibility(userId);
-    
+            const eligibility = await fetchUserEligibility(userId);
+            setIsEligible(eligibility);
+
         } catch (error) {
             console.log("Error occurred. TODO: improve me.");
         } finally {
@@ -64,9 +66,11 @@ const Home: React.FC<HomeProps> = ({ userId }) => {
                 eventDescription={"Please join us for a baby shower for\nGiancarlo & Michelle Cuadros"}
                 eventDate="Saturday, April 26th, 2025"
                 eventTime={"\n11:30am - 2:00pm"}
-                eventLocation={"Potrero Launch Community Room\n2235 3rd St, San Francisco, CA"}
+                eventLocation={"Avalon at Mission Bay, 19th floor\n255 King St, San Francisco, CA"}
                 eventDescription2="Come enjoy lunch and games as we prepare to welcome their bundle of joy!"
                 image="https://mkcuadros.github.io/projects/ptj_icon.png/400x200?text=You're+Invited!"
+                registryUrl="https://my.babylist.com/gc-and-mc"
+                isEligibleForRegistry={isEligible}
                 onRSVP={() => setModalOpen(true)}
                 onReveal={() => navigate("/game")}  // Use navigate for routing
             />
