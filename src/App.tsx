@@ -30,7 +30,7 @@ const App: React.FC = () => {
                 <Route
                     path="/"
                     element={
-                        user?.eligibility
+                        user?.userId
                             ? <Navigate to="/card" replace />
                             : <Navigate to="/login" replace />
                     }
@@ -43,7 +43,7 @@ const App: React.FC = () => {
                 <Route
                     path="/card"
                     element={
-                        user?.eligibility ? (
+                        user?.userId ? (
                             <Home userId={user.userId} />
                         ) : (
                             <Navigate to="/login" replace />
@@ -55,7 +55,7 @@ const App: React.FC = () => {
                 <Route
                     path="/game"
                     element={
-                        user?.eligibility ? (
+                        user?.userId ? (
                             <GamePage />
                         ) : (
                             <Navigate to="/login" replace />

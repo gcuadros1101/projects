@@ -91,7 +91,8 @@ const DraggableList: React.FC<DraggableListProps> = ({ items, onOrderChange, tar
         }
 
         if (last) {
-            console.log('Drag released!');
+            // can uncomment for debug 
+            // console.log('Drag released!');
             const orderIsCorrect = checkOrder();
             onOrderChange(orderIsCorrect);  // Callback right after setting new order
         }

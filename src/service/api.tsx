@@ -49,8 +49,8 @@ export async function fetchUserEligibility(userId: string) {
     return null;
 }
 
-export async function updateUserElibility(userId: string, eligibility: boolean) {
-    const res: ApiResponse = await callAPI("updateUserElibility", "POST", { userId, eligibility});
+export async function updateUserEligibility(userId: string, eligibility: boolean) {
+    const res: ApiResponse = await callAPI("updateUserEligibility", "POST", { userId, eligibility});
     if (res && res.body && res.body.status) {
         return res.body.status;
     }
