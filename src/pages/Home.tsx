@@ -6,33 +6,33 @@ import Toast from "../components/Toast";
 import { fetchUserIdByPhone, fetchUserEligibility, updateRSVP } from "../service/api";
 
 type HomeProps = {
-    userId: string; // Or string, depending on the type of userId
+    userId: string; // User ID passed as a prop
+    eligibility: boolean; // Eligibility status passed as a prop
+    setEligibility: (eligibility: boolean) => void; // Function to update global eligibility state
 };
 
-const Home: React.FC<HomeProps> = ({ userId }) => {
+const Home: React.FC<HomeProps> = ({ userId, eligibility, setEligibility }) => {
 
     const [isModalOpen, setModalOpen] = useState(false);
     const [responseMessage, setResponseMessage] = useState(""); // Initialize state
-    const [isEligible, setIsEligible] = useState(false); // State to track eligibility for registry link
     const navigate = useNavigate(); // React Router hook for navigation
 
     console.log(`userId: ${userId}`);
 
     useEffect(() => {
-        const getUserEligibility = async () => {
-            try { 
-                const eligibility = await fetchUserEligibility(userId); // API call to check eligibility
-                setIsEligible(eligibility); // Update eligibility state
-                console.log(`eligibility result: " ${eligibility}`);
+        const fetchEligibility = async () => {
+            try {
+                const result = await fetchUserEligibility(userId);
+                setEligibility(result); // Update global eligibility state based on API response
             } catch (error) {
                 console.error("Error fetching eligibility:", error);
             }
         };
 
-        getUserEligibility();
-    }, [userId]); // Runs this block whenever userId changes
+        fetchEligibility();
+    }, [userId, setEligibility]);
 
-    console.log(`fetchedEligibility: ${isEligible}`);
+    console.log(`fetchedEligibility: ${eligibility}`);
 
     const handleRSVP = async (rsvp: boolean) => {
         try {
@@ -71,7 +71,7 @@ const Home: React.FC<HomeProps> = ({ userId }) => {
                 eventDescription2="Come enjoy lunch and games as we prepare to welcome their bundle of joy!"
                 image="https://mkcuadros.github.io/projects/ptj_icon.png/400x200?text=You're+Invited!"
                 registryUrl="https://my.babylist.com/gc-and-mc"
-                isEligibleForRegistry={isEligible}
+                isEligibleForRegistry={eligibility}
                 onRSVP={() => setModalOpen(true)}
                 onReveal={() => navigate("/game")}  // Use navigate for routing
             />

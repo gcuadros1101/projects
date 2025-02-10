@@ -6,63 +6,95 @@ import Login from "./pages/Login";
 import GamePage from "./pages/GamePage";
 
 const App: React.FC = () => {
-    const [user, setUser] = useState<{ userId: string; eligibility: boolean } | null>(null);
 
-    // Optional: Load user from localStorage on initial render
-    useEffect(() => {
-        const savedUser = localStorage.getItem("user");
-        if (savedUser) {
-            setUser(JSON.parse(savedUser));
-        }
-    }, []);
+    const [userId, setUserId] = useState<string | null>(null);
+    const [eligibility, setEligibility] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState(true); 
 
-    // Optional: Save user to localStorage whenever it changes
+    // Load `userId` and `eligibility` from localStorage on initial render (when the app first loads)
     useEffect(() => {
-        if (user) {
-            localStorage.setItem("user", JSON.stringify(user));
+        const savedUserId = localStorage.getItem("userId"); // Retrieve userId from localStorage
+        const savedEligibility = localStorage.getItem("eligibility"); // Retrieve eligibility from localStorage
+
+        console.log("Saved userId:", savedUserId);
+        console.log("Saved eligibility:", savedEligibility);
+
+        if (savedUserId) {
+            setUserId(savedUserId);
+            console.log("UserId set to:", savedUserId);
         }
-    }, [user]);
+        if (savedEligibility) {
+            setEligibility(savedEligibility === "true");
+            console.log("Eligibility set to:", savedEligibility === "true");
+        }
+
+        setIsLoading(false); // Mark loading as complete
+    }, []); // Empty dependency array means this effect runs only once when the component mounts
+
+    // Save `userId` to localStorage whenever it changes
+    useEffect(() => {
+        if (userId) {
+            localStorage.setItem("userId", userId); // Save userId to localStorage if it's not null
+        } else {
+            localStorage.removeItem("userId"); // Remove userId from localStorage if it's null (e.g., on logout)
+        }
+    }, [userId]); // Runs whenever `userId` changes
+
+    // Save `eligibility` to localStorage whenever it changes
+    useEffect(() => {
+        localStorage.setItem("eligibility", eligibility.toString()); // Save eligibility as a string ("true"/"false")
+    }, [eligibility]); // Runs whenever `eligibility` changes
+
+    if (isLoading) {
+        return <div>Loading...</div>; // Replace with your preferred loading UI
+    }
+
+    console.log("Current userId state:", userId);
 
     return (
         <Router>
             <Routes>
-                {/* Root route logic */}
                 <Route
                     path="/"
+                    element={<Navigate to={userId ? "/card" : "/login"} replace />}
+                />
+                <Route
+                    path="/login"
                     element={
-                        user?.userId
-                            ? <Navigate to="/card" replace />
-                            : <Navigate to="/login" replace />
+                        userId ? (
+                            <Navigate to="/card" replace />
+                        ) : (
+                            <Login setUserId={setUserId} />
+                        )
                     }
                 />
-
-                {/* Login route */}
-                <Route path="/login" element={<Login setUser={setUser} />} />
-
-                {/* Home route */}
                 <Route
                     path="/card"
                     element={
-                        user?.userId ? (
-                            <Home userId={user.userId} />
+                        userId ? (
+                            <Home 
+                                userId={userId} 
+                                eligibility={eligibility}
+                                setEligibility={setEligibility}
+                            />
                         ) : (
                             <Navigate to="/login" replace />
                         )
                     }
                 />
-
-                {/* Game route */}
                 <Route
                     path="/game"
                     element={
-                        user?.userId ? (
-                            <GamePage userId={user.userId} />
+                        userId ? (
+                            <GamePage 
+                                userId={userId} 
+                                setEligibility={setEligibility}
+                            />
                         ) : (
                             <Navigate to="/login" replace />
                         )
                     }
                 />
-
             </Routes>
         </Router>
     );

@@ -7,9 +7,10 @@ import { updateUserEligibility } from '../service/api';
 
 type GamePageProps = {
     userId: string;
+    setEligibility: (eligibility: boolean) => void;
 };
 
-const GamePage: React.FC<GamePageProps>= ({ userId }) => {
+const GamePage: React.FC<GamePageProps>= ({ userId, setEligibility }) => {
     const [isFirstListCorrect, setIsFirstListCorrect] = useState(false);
     const [isSecondListCorrect, setIsSecondListCorrect] = useState(false);
     const [gameCompleted, setGameCompleted] = useState(false);
@@ -19,7 +20,9 @@ const GamePage: React.FC<GamePageProps>= ({ userId }) => {
         // This will check the game status after state updates have been applied
         if (isFirstListCorrect && isSecondListCorrect) {
             console.log("Both lists are correct! Update user eligibility and setGameCompleted to true...");
-            updateUserEligibility(userId, true);
+            updateUserEligibility(userId, true).then(() => {
+                setEligibility(true); // Update global eligibility state after game completion
+            });
 
             // Delay the action by 200 milliseconds
             setTimeout(() => {

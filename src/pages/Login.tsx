@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Dispatch, SetStateAction  } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchUserIdByPhone } from "../service/api";
 import { parse } from "path";
@@ -10,10 +10,10 @@ type User = {
 };
 
 type LoginProps = {
-  setUser: (user: User) => void;
+  setUserId: Dispatch<SetStateAction<string | null>>;
 };
 
-const Login: React.FC<LoginProps> = ({ setUser }) => {
+const Login: React.FC<LoginProps> = ({ setUserId }) => {
   const [phone, setPhone] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -26,7 +26,7 @@ const Login: React.FC<LoginProps> = ({ setUser }) => {
     
     if (phone === DEV_PHONE) {
         // Simulate a successful response for the hardcoded number
-        setUser({ userId: "1", eligibility: true}); // Use any mock userId
+        setUserId("1"); // Use any mock userId
         console.log("Development phone number detected, bypassing API.");
         navigate("/card");
         return;
@@ -39,7 +39,7 @@ const Login: React.FC<LoginProps> = ({ setUser }) => {
       const fetchedUserId = await fetchUserIdByPhone(phone);
       if (fetchedUserId) {
         //const eligibility = await fetchUserEligibility(parsed_body.userId);
-        setUser({ userId: fetchedUserId, eligibility: true});  // TODO: update "eligibility=true" placeholder with getUserEligibility endpoint
+        setUserId(fetchedUserId);  // TODO: update "eligibility=true" placeholder with getUserEligibility endpoint
         console.log("User recognized. Navigating to Card.");
         navigate("/card");
           return;
