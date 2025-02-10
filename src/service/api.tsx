@@ -43,10 +43,11 @@ export async function fetchUserIdByPhone(phone: string) {
 
 export async function fetchUserEligibility(userId: string) {
     const res: ApiResponse = await callAPI("getUserEligibility", "POST", { userId });
-    if (res && res.body && res.body.eligibility) {
+    if (res && res.body && (typeof res.body.eligibility === "boolean")) {
         return res.body.eligibility;
     }
-    return null;
+    console.log('An error occurred fetching user eligibility. Setting eligibility to true by default.')
+    return true;
 }
 
 export async function updateUserEligibility(userId: string, eligibility: boolean) {

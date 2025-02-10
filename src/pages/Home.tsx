@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ECard from "../components/ECard/ECard";
 import RSVPModal from "../components/RSVPModal/RSVPModal";
@@ -18,20 +18,21 @@ const Home: React.FC<HomeProps> = ({ userId }) => {
 
     console.log(`userId: ${userId}`);
 
-    // TODO: the next ~10 lines are experimental; it's safe and can fetch, but not properly access the eligibility
-    const getUserEligibility = async () => {
-        try { 
-            const eligibility = await fetchUserEligibility(userId);
-            setIsEligible(eligibility);
+    useEffect(() => {
+        const getUserEligibility = async () => {
+            try { 
+                const eligibility = await fetchUserEligibility(userId); // API call to check eligibility
+                setIsEligible(eligibility); // Update eligibility state
+                console.log(`eligibility result: " ${eligibility}`);
+            } catch (error) {
+                console.error("Error fetching eligibility:", error);
+            }
+        };
 
-        } catch (error) {
-            console.log("Error occurred. TODO: improve me.");
-        } finally {
-            console.log("update finally");
-        }
-    }
-    let fetchedEligibility = getUserEligibility();
-    console.log(`fetchedEligibility: ${fetchedEligibility}`);
+        getUserEligibility();
+    }, [userId]); // Runs this block whenever userId changes
+
+    console.log(`fetchedEligibility: ${isEligible}`);
 
     const handleRSVP = async (rsvp: boolean) => {
         try {
