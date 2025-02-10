@@ -56,7 +56,7 @@ const App: React.FC = () => {
                     path="/game"
                     element={
                         user?.userId ? (
-                            <GamePage />
+                            <GamePage userId={user.userId} />
                         ) : (
                             <Navigate to="/login" replace />
                         )

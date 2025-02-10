@@ -5,16 +5,15 @@ import '../App.css';
 import './GamePage.css';
 import { updateUserEligibility } from '../service/api';
 
+type GamePageProps = {
+    userId: string;
+};
 
-const GamePage: React.FC = () => {
+const GamePage: React.FC<GamePageProps>= ({ userId }) => {
     const [isFirstListCorrect, setIsFirstListCorrect] = useState(false);
     const [isSecondListCorrect, setIsSecondListCorrect] = useState(false);
     const [gameCompleted, setGameCompleted] = useState(false);
     const navigate = useNavigate(); // Hook to handle navigation
-
-    // TODO: update when we have the acutal userId
-    // - pass actual userId to the gamePage OR add whoAmI call to that page
-    const userId = '1';
 
     useEffect(() => {
         // This will check the game status after state updates have been applied
