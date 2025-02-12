@@ -40,6 +40,17 @@ export async function fetchUserIdByPhone(phone: string) {
     return null;
 }
 
+export async function fetchUserDetailsByPhone(phone: string) {
+    const res: ApiResponse = await callAPI("whoAmI", "POST", { phone });
+    if (res && res.body.userId) {
+        return {
+            userId: res.body.userId,
+            genderRevealOnly: res.body.genderRevealOnly ?? false // Default to false
+        };
+    }
+    return null;
+}
+
 
 export async function fetchUserEligibility(userId: string) {
     const res: ApiResponse = await callAPI("getUserEligibility", "POST", { userId });

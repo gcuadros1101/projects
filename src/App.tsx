@@ -10,6 +10,18 @@ const App: React.FC = () => {
     const [userId, setUserId] = useState<string | null>(null);
     const [eligibility, setEligibility] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState(true); 
+    const [genderRevealOnly, setGenderRevealOnly] = useState<boolean>(false);
+
+    useEffect(() => {
+        const savedGenderRevealOnly = localStorage.getItem("genderRevealOnly");
+        if (savedGenderRevealOnly) {
+            setGenderRevealOnly(savedGenderRevealOnly === "true");
+        }
+    }, []);
+    
+    useEffect(() => {
+        localStorage.setItem("genderRevealOnly", genderRevealOnly.toString());
+    }, [genderRevealOnly]);
 
     // Load `userId` and `eligibility` from localStorage on initial render (when the app first loads)
     useEffect(() => {
@@ -53,50 +65,60 @@ const App: React.FC = () => {
 
     return (
         <Router>
-            <Routes>
-                <Route
-                    path="/"
-                    element={<Navigate to={userId ? "/card" : "/login"} replace />}
-                />
-                <Route
-                    path="/login"
-                    element={
-                        userId ? (
-                            <Navigate to="/card" replace />
-                        ) : (
-                            <Login setUserId={setUserId} />
-                        )
-                    }
-                />
-                <Route
-                    path="/card"
-                    element={
-                        userId ? (
-                            <Home 
-                                userId={userId} 
-                                eligibility={eligibility}
-                                setEligibility={setEligibility}
-                            />
-                        ) : (
-                            <Navigate to="/login" replace />
-                        )
-                    }
-                />
-                <Route
-                    path="/game"
-                    element={
-                        userId ? (
-                            <GamePage 
-                                userId={userId} 
-                                setEligibility={setEligibility}
-                            />
-                        ) : (
-                            <Navigate to="/login" replace />
-                        )
-                    }
-                />
-            </Routes>
-        </Router>
+    <Routes>
+        {/* Root Route - Redirect Based on User Status */}
+        <Route
+            path="/"
+            element={
+                !userId ? (
+                    <Navigate to="/login" replace />
+                ) : genderRevealOnly ? (
+                    <Navigate to="/game" replace />
+                ) : (
+                    <Navigate to="/card" replace />
+                )
+            }
+        />
+
+        {/* Login Route - Ensure Proper Redirection for Logged-in Users */}
+        <Route
+            path="/login"
+            element={
+                userId ? (
+                    <Navigate to={genderRevealOnly ? "/game" : "/card"} replace />
+                ) : (
+                    <Login setUserId={setUserId} setGenderRevealOnly={setGenderRevealOnly} />
+                )
+            }
+        />
+
+        {/* Card Page - Restrict Unauthorized & Gender-Restricted Users */}
+        <Route
+            path="/card"
+            element={
+                !userId ? (
+                    <Navigate to="/login" replace />
+                ) : genderRevealOnly ? (
+                    <Navigate to="/game" replace />
+                ) : (
+                    <Home userId={userId} eligibility={eligibility} setEligibility={setEligibility} />
+                )
+            }
+        />
+
+        {/* Game Page - Ensure Only Logged-in Users Can Access */}
+        <Route
+            path="/game"
+            element={
+                userId ? (
+                    <GamePage userId={userId} genderRevealOnly={genderRevealOnly} setEligibility={setEligibility} />
+                ) : (
+                    <Navigate to="/login" replace />
+                )
+            }
+        />
+    </Routes>
+</Router>
     );
 };
 

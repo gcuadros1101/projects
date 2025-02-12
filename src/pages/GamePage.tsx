@@ -7,10 +7,11 @@ import { updateUserEligibility } from '../service/api';
 
 type GamePageProps = {
     userId: string;
+    genderRevealOnly: boolean
     setEligibility: (eligibility: boolean) => void;
 };
 
-const GamePage: React.FC<GamePageProps>= ({ userId, setEligibility }) => {
+const GamePage: React.FC<GamePageProps>= ({ userId, genderRevealOnly, setEligibility }) => {
     const [isFirstListCorrect, setIsFirstListCorrect] = useState(false);
     const [isSecondListCorrect, setIsSecondListCorrect] = useState(false);
     const [gameCompleted, setGameCompleted] = useState(false);
@@ -51,7 +52,7 @@ const GamePage: React.FC<GamePageProps>= ({ userId, setEligibility }) => {
                     </div>
                 </>                
             )}
-            {gameCompleted && (
+            {gameCompleted && !genderRevealOnly && (
                 <div className="button-container" style={{ position: 'relative', zIndex: 1 }}>
                     <button className="navigate-button" onClick={navigateToCardPage}>
                         🎉 Return to Invite Details 🎉

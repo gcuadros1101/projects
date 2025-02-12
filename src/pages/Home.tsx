@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ECard from "../components/ECard/ECard";
 import RSVPModal from "../components/RSVPModal/RSVPModal";
 import Toast from "../components/Toast"; 
-import { fetchUserIdByPhone, fetchUserEligibility, updateRSVP } from "../service/api";
+import { fetchUserEligibility, updateRSVP } from "../service/api";
 
 type HomeProps = {
     userId: string; // User ID passed as a prop

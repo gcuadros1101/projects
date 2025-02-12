@@ -1,7 +1,6 @@
 import React, { useState, Dispatch, SetStateAction  } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchUserIdByPhone } from "../service/api";
-import { parse } from "path";
+import { fetchUserDetailsByPhone } from "../service/api";
 import '../App.css';
 
 type User = {
@@ -11,9 +10,10 @@ type User = {
 
 type LoginProps = {
   setUserId: Dispatch<SetStateAction<string | null>>;
+  setGenderRevealOnly: Dispatch<SetStateAction<boolean>>;
 };
 
-const Login: React.FC<LoginProps> = ({ setUserId }) => {
+const Login: React.FC<LoginProps> = ({ setUserId, setGenderRevealOnly }) => {
   const [phone, setPhone] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -36,12 +36,14 @@ const Login: React.FC<LoginProps> = ({ setUserId }) => {
 
     try {
 
-      const fetchedUserId = await fetchUserIdByPhone(phone);
-      if (fetchedUserId) {
-        //const eligibility = await fetchUserEligibility(parsed_body.userId);
-        setUserId(fetchedUserId);  // TODO: update "eligibility=true" placeholder with getUserEligibility endpoint
-        console.log("User recognized. Navigating to Card.");
-        navigate("/card");
+      const userData = await fetchUserDetailsByPhone(phone);
+    
+      if (userData) {
+        setUserId(userData.userId);
+        setGenderRevealOnly(userData.genderRevealOnly);
+        localStorage.setItem("genderRevealOnly", userData.genderRevealOnly.toString());
+        console.log("User recognized. Navigating. genderRevealOnly: ", userData.genderRevealOnly);
+        navigate(userData.genderRevealOnly ? "/game" : "/card");
           return;
       }
       else {
