@@ -146,3 +146,7 @@ html, body {
   background: linear-gradient(90deg, #f8c7ff, #acd8ff); /* Keeps background */
   position: relative;
 }
+
+.react-tel-input .flag-dropdown {
+  display: none !important;
+}

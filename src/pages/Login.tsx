@@ -1,6 +1,8 @@
 import React, { useState, Dispatch, SetStateAction  } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchUserDetailsByPhone } from "../service/api";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import '../App.css';
 
 type User = {
@@ -22,9 +24,22 @@ const Login: React.FC<LoginProps> = ({ setUserId, setGenderRevealOnly }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    let cleanedPhone = phone.replace(/\D/g, "");
+
+    if (cleanedPhone.startsWith("1") && cleanedPhone.length === 11) {
+      cleanedPhone = cleanedPhone.substring(1);
+  }
+
+    if (cleanedPhone.length < 10) { // Ensure it's a valid number
+      setErrorMessage("Please enter a valid phone number.");
+      return;
+    }
+
+    console.log("cleaned phone: " + cleanedPhone)
+
     const DEV_PHONE = "223500000"; // Hardcoded development phone number
     
-    if (phone === DEV_PHONE) {
+    if (cleanedPhone === DEV_PHONE) {
         // Simulate a successful response for the hardcoded number
         setUserId("1"); // Use any mock userId
         console.log("Development phone number detected, bypassing API.");
@@ -36,7 +51,7 @@ const Login: React.FC<LoginProps> = ({ setUserId, setGenderRevealOnly }) => {
 
     try {
 
-      const userData = await fetchUserDetailsByPhone(phone);
+      const userData = await fetchUserDetailsByPhone(cleanedPhone);
     
       if (userData) {
         setUserId(userData.userId);
@@ -61,21 +76,28 @@ const Login: React.FC<LoginProps> = ({ setUserId, setGenderRevealOnly }) => {
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
       <h1>Welcome!</h1>
-      <p>To access the invite information...</p>
+      <p>To get started...</p>
       <form onSubmit={handleSubmit}>
-        <input
-          type="tel"
-          placeholder="Please enter your phone number"
+        <PhoneInput
+          country={"us"}
           value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          style={{
+          onlyCountries={["us"]}
+          disableDropdown={true} // Prevents country selection
+          disableCountryCode={true} // Hides "+1" from the input
+          onChange={(value) => setPhone(value)}
+          inputProps={{
+            name: "phone",
+            required: true,
+            autoFocus: true,
+            placeholder: "Enter your phone number"
+          }}
+          inputStyle={{
+            width: "80%",
+            maxWidth: "300px",
             padding: "10px",
             fontSize: "16px",
             borderRadius: "8px",
             border: "1px solid #ccc",
-            width: "80%",
-            maxWidth: "300px",
-            marginBottom: "10px",
           }}
         />
         <br />
