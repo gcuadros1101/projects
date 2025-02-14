@@ -40,8 +40,10 @@ const GamePage: React.FC<GamePageProps>= ({ userId, genderRevealOnly, setEligibi
     return (
         <div className="GamePage-container">
             <h1>Solve the Puzzle</h1>
-            <DraggableList items={'K N H T I'.split(' ')} onOrderChange={setIsFirstListCorrect} targetWord="THINK" />
-            <DraggableList items={'K N P I'.split(' ')} onOrderChange={setIsSecondListCorrect} targetWord="PINK" />
+            <div className="draggable-list-wrapper">
+                 <DraggableList items={'K N H T I'.split(' ')} onOrderChange={setIsFirstListCorrect} targetWord="THINK" />
+                 <DraggableList items={'K N P I'.split(' ')} onOrderChange={setIsSecondListCorrect} targetWord="PINK" />
+            </div>
             {gameCompleted && (
                 <>
                     <div className="game-completion-message1">

@@ -22,7 +22,7 @@ const DraggableList: React.FC<DraggableListProps> = ({ items, onOrderChange, tar
         const handleResize = () => {
             const width = window.innerWidth;
             let newSpacing;
-            newSpacing = Math.min(120, width / 8);
+            newSpacing = Math.max(70, Math.min(120, width / 8)); // Ensures at least 60px spacing for phones
             setSpacing(newSpacing);
         };
       
@@ -101,7 +101,11 @@ const DraggableList: React.FC<DraggableListProps> = ({ items, onOrderChange, tar
     return (
 
         <div className="DraggableList-container">  {/* Ensure this className matches what you style */}    
-            <div className={styles.content} style={{ width: items.length * spacing }}>
+            <div className={styles.content} style={{ 
+                width: `min(${items.length * spacing}px, 100%)`,
+                margin: '0 auto', // Forces centering
+                textAlign: 'center' // Ensures no extra space is added
+                }}>
                 {springs.map(({ zIndex, shadow, x, scale }, i) => (
                     <animated.div
                         {...bind(i)}
@@ -111,6 +115,13 @@ const DraggableList: React.FC<DraggableListProps> = ({ items, onOrderChange, tar
                             // boxShadow: shadow.to(s => `rgba(0, 0, 0, 0.15) 0px ${s}px ${2 * s}px 0px`),
                             x,
                             scale,
+                            marginBottom: `20px`,
+                            // marginRight: i < items.length - 1 ? `${spacing / 5}px` : '0px', // Only apply marginRight to non-last items
+                            willChange: 'transform', /* Prevents iOS from treating it as a floating layer */
+                            display: 'flex', /* Ensures text is centered */
+                            alignItems: 'center', /* Vertical centering */
+                            justifyContent: 'center', /* Horizontal centering */
+                            textAlign: 'center', /* Ensures text is visually centered */
                         }}
                         children={items[i]}
                     />

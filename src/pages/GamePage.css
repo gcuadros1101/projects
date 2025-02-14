@@ -24,3 +24,9 @@
   margin-top: calc(15px + 4vmin);
   text-align: center;
 }
+
+.draggable-list-wrapper {
+  position: relative; /* Ensures the lists scroll naturally */
+  width: 100%;
+  z-index: 1; /* Prevents it from floating above other content */
+}

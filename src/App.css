@@ -60,6 +60,8 @@
   padding-top: 10vh;
   font-size: calc(10px + 2vmin);
   color: white;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  max-width: 100vw; /* Ensures content stays within screen bounds */
 }
 
 .element {
@@ -81,28 +83,66 @@
 
 .game-completion-message1 {
   color: pink;
-  font-size: 200%;
-  margin-top: calc(15px + 4vmin);
+  font-size: clamp(1.5rem, 5vw, 3rem); /* Dynamically scales */
+  margin-top: calc(30px + 6vmin);
   text-align: center;
   font-weight: bold;
   animation: spin 0.25s ease-out forwards;
+  max-width: 90%; /* Prevents text overflow */
+  white-space: normal; /* Allows multi-line wrapping */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  padding: 0 10px; /* Adds slight padding to avoid edge cutoff */
+  display: block;
 }
 
 .game-completion-message2 {
   color: pink;
-  font-size: 200%;
+  font-size: clamp(1rem, 4vw, 2rem); /* Dynamically scales */
   margin-top: calc(15px + 4vmin);
   text-align: center;
   font-weight: bold;
   animation: fadeInScaleUp 1s ease-out forwards;
+  max-width: 90%; /* Ensures the text does not exceed the screen width */
+  white-space: normal; /* Allows multi-line wrapping */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  padding: 0 10px; /* Adds slight padding to avoid edge cutoff */
+  display: block;
 }
 
+
+/* .DraggableList-container {
+  margin-top: calc(15px + 4vmin); 
+  margin-bottom: calc(15px + 4vmin);  
+} */
 
 .DraggableList-container {
-  margin-top: calc(15px + 4vmin);  /* Adds space between the lists */
-  margin-bottom: calc(15px + 4vmin);  /* Adds space between the lists */
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  row-gap: 30px; /* Adds vertical spacing between rows */
+  align-items: center;
+  margin-top: calc(20px + 4vmin); /* Re-added spacing between lists */
+  margin-bottom: calc(40px + 6vmin); /* Re-added spacing between lists */
+  z-index: 1;
+  padding: 0;
 }
 
-body, html {
-  background: linear-gradient(90deg, #f8c7ff, #acd8ff);
+.DraggableList-container .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+html, body {
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+  width: 100%;
+  max-width: 100vw; /* Ensures content does not exceed screen width */
+  background: linear-gradient(90deg, #f8c7ff, #acd8ff); /* Keeps background */
+  position: relative;
 }
