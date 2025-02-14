@@ -1,6 +1,7 @@
 import e from "express";
 
-const API_BASE_URL = "https://g2ox05vtbb.execute-api.us-east-2.amazonaws.com/prod/v1";
+// Note to developer: change this to dev for testing locally; switch back to prod before deploying/merging
+const API_BASE_URL = process.env.REACT_APP_API_URL || "https://g2ox05vtbb.execute-api.us-east-2.amazonaws.com/prod/v1";
 
 
 type ApiResponse = {
