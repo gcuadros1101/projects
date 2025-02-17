@@ -33,10 +33,10 @@ const Home: React.FC<HomeProps> = ({ userId, eligibility, setEligibility }) => {
     }, [userId, setEligibility]);
 
     console.log(`fetchedEligibility: ${eligibility}`);
-
-    const handleRSVP = async (rsvp: boolean) => {
+    
+    const handleRSVP = async (rsvp: boolean, dietaryRestrictions: string = "") => {
         try {
-            let rsvpCallStatus = await updateRSVP(userId, rsvp);
+            let rsvpCallStatus = await updateRSVP(userId, rsvp, dietaryRestrictions); // Send dietaryRestrictions
             console.log(`rsvpCallStatus: ${rsvpCallStatus}`);
 
             // Display a different message based on the RSVP response

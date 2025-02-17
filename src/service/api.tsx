@@ -70,10 +70,15 @@ export async function updateUserEligibility(userId: string, eligibility: boolean
     return null;
 }
 
-export async function updateRSVP(userId: string, rsvp: boolean) {
-    const res: ApiResponse = await callAPI("updateRSVP", "POST", { userId, rsvp});
+export async function updateRSVP(userId: string, rsvp: boolean, dietaryRestrictions?: string) {
+    let res: ApiResponse;
+    if (dietaryRestrictions) {
+        res = await callAPI("updateRSVP", "POST", { userId, rsvp, dietaryRestrictions});
+    } else {
+        res = await callAPI("updateRSVP", "POST", { userId, rsvp});
+    }
     if (res && res.body && res.body.status) {
-        return res.body.status;
+        return res.body.status
     }
     return null;
 }
