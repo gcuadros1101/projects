@@ -51,7 +51,7 @@ const ECard: React.FC<ECardProps> = ({
 
                 {/* RSVP & Reveal Buttons */}
                 <button onClick={onReveal}>Click here to find out the gender!</button>
-                <button onClick={onRSVP}>Please RSVP by April 9th</button>
+                <button onClick={onRSVP}>Please RSVP by April 1st</button>
 
                 {/* Registry Link */}
                 {isEligibleForRegistry && (
