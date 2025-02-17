@@ -50,7 +50,7 @@ const GamePage: React.FC<GamePageProps>= ({ userId, genderRevealOnly, setEligibi
                         Well done!
                     </div>
                     <div className="game-completion-message2">
-                        It's a Surprise!!
+                        It's a Girl!!
                     </div>
                 </>                
             )}

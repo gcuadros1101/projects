@@ -74,9 +74,9 @@ const Login: React.FC<LoginProps> = ({ setUserId, setGenderRevealOnly }) => {
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>Welcome!</h1>
-      <p>To get started...</p>
+    <div style={{ textAlign: "center", marginTop: "50px"}}>
+      <h1 style={{ color: "#f5f5f5" }}>Welcome!</h1>
+      <p style={{ color: "#f5f5f5" }}>To get started...</p>
       <form onSubmit={handleSubmit}>
         <PhoneInput
           country={"us"}
@@ -98,6 +98,7 @@ const Login: React.FC<LoginProps> = ({ setUserId, setGenderRevealOnly }) => {
             fontSize: "16px",
             borderRadius: "8px",
             border: "1px solid #ccc",
+            color: "#3e4a42"
           }}
         />
         <br />
@@ -108,8 +109,8 @@ const Login: React.FC<LoginProps> = ({ setUserId, setGenderRevealOnly }) => {
             padding: "10px 20px",
             fontSize: "16px",
             borderRadius: "8px",
-            background: loading ? "#aaa" : "#4CAF50", // Change button color when loading
-            color: "white",
+            background: loading ? "#b8aca0" : "#e6ddd1", // Change button color when loading
+            color: "#444e46",
             border: "none",
             cursor: loading ? "not-allowed" : "pointer", // Change cursor when loading
           }}
@@ -123,7 +124,7 @@ const Login: React.FC<LoginProps> = ({ setUserId, setGenderRevealOnly }) => {
         </div>
       )}
       {errorMessage && (
-        <p style={{ color: "red", marginTop: "10px" }}>{errorMessage}</p>
+        <p style={{ color: "#f5f5f5", marginTop: "10px" }}>{errorMessage}</p>
       )}
     </div>
   );
