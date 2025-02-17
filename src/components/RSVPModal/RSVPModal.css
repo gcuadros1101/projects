@@ -144,9 +144,9 @@
 }
 
 .dietary-input input {
-    width: 100%;
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px; /* Prevents mobile zoom-in */
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }
