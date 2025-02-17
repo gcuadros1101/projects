@@ -77,14 +77,14 @@
   }
   100% {
       opacity: 1;
-      transform: scale(1.8);
+      transform: scale(2.5);
   }
 }
 
 .game-completion-message1 {
   color: pink;
   font-size: clamp(1.5rem, 5vw, 3rem); /* Dynamically scales */
-  margin-top: calc(30px + 6vmin);
+  margin-top: calc(15px + 6vmin);
   text-align: center;
   font-weight: bold;
   animation: spin 0.25s ease-out forwards;
@@ -98,8 +98,8 @@
 
 .game-completion-message2 {
   color: pink;
-  font-size: clamp(1rem, 4vw, 2rem); /* Dynamically scales */
-  margin-top: calc(15px + 4vmin);
+  font-size: clamp(1.2rem, 5vw, 2.5rem); /* Slightly bigger */
+  margin-top: calc(10px + 4vmin);
   text-align: center;
   font-weight: bold;
   animation: fadeInScaleUp 1s ease-out forwards;
@@ -143,7 +143,7 @@ html, body {
   overflow-x: hidden; /* Prevents horizontal scrolling */
   width: 100%;
   max-width: 100vw; /* Ensures content does not exceed screen width */
-  background: linear-gradient(90deg, #f8c7ff, #acd8ff); /* Keeps background */
+  background-color: #87a38f; /* Sage green */
   position: relative;
 }
 

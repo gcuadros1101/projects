@@ -63,17 +63,18 @@ const Home: React.FC<HomeProps> = ({ userId, eligibility, setEligibility }) => {
     return (
         <div>
             <ECard
-                eventTitle={"a little cutie on the way!"}
-                eventDescription={"Please join us for a baby shower for\nGiancarlo & Michelle Cuadros"}
-                eventDate="Saturday, April 26th, 2025"
-                eventTime={"\n11:30am - 2:00pm"}
-                eventLocation={"Avalon at Mission Bay, 19th floor\n255 King St, San Francisco, CA"}
-                eventDescription2="Come enjoy lunch and games as we prepare to welcome their bundle of joy!"
-                image="https://mkcuadros.github.io/projects/ptj_icon.png/400x200?text=You're+Invited!"
+                eventTitle="BABY"
+                eventSubtitle="in bloom"
+                eventDescription={"PLEASE JOIN US FOR A BABY SHOWER FOR"}
+                eventParents={"GIAN & MICHELLE CUADROS"}
+                eventDate="SATURDAY • APRIL 26TH • 11:30AM-2:00PM"
+                eventLocation={"AVALON AT MISSION BAY\n255 KING ST, 19TH FLOOR • SAN FRANCISCO, CA"}
+                eventDescription2={"Come enjoy lunch and games as we prepare\nto welcome their bundle of joy!"}
                 registryUrl="https://my.babylist.com/gc-and-mc"
                 isEligibleForRegistry={eligibility}
                 onRSVP={() => setModalOpen(true)}
-                onReveal={() => navigate("/game")}  // Use navigate for routing
+                onReveal={() => navigate("/game")}  
+                eventHost={"contact host with questions: (414) 379-1864 • beckylchiang@gmail.com"}
             />
             <RSVPModal
                 isOpen={isModalOpen}
