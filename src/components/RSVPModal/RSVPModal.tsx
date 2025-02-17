@@ -27,15 +27,6 @@ const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose, onRSVP }) => {
         <div className="modal-overlay">
             <div className="modal-content">
                 <h2 className="modal-title">RSVP to the Party!</h2>
-                <div className="modal-buttons">
-                    <button className="modal-button yes" onClick={() => handleRSVP(true)} disabled={loading}>
-                        Yes, I'll be there!
-                    </button>
-                    <button className="modal-button no" onClick={() => handleRSVP(false)} disabled={loading}>
-                        Won't make it
-                    </button>
-                </div>
-                
                 {/* Show dietary restrictions input only if attending */}
                 <div className="dietary-input">
                     <label htmlFor="dietary">Any dietary restrictions?</label>
@@ -47,6 +38,15 @@ const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose, onRSVP }) => {
                         placeholder="E.g., vegetarian, gluten-free"
                         disabled={loading}
                     />
+                </div>
+                <p></p>
+                <div className="modal-buttons">
+                    <button className="modal-button yes" onClick={() => handleRSVP(true)} disabled={loading}>
+                        Yes, I'll be there!
+                    </button>
+                    <button className="modal-button no" onClick={() => handleRSVP(false)} disabled={loading}>
+                        Won't make it
+                    </button>
                 </div>
 
                 {loading && <div className="spinner"><span></span></div>}
