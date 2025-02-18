@@ -147,3 +147,48 @@
 .rsvp-other:hover {
   color: #4a3c33; /* Darker brown on hover */
 }
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Base Button */
+.shimmer-button {
+  position: relative;
+  background: #d1c6b8; /* Neutral beige */
+  color: #444e46;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-size: clamp(12px, 1.5vw, 16px);
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  overflow: hidden;
+  transition: background 0.3s ease;
+}
+
+/* 🔥 Pseudo-element for the shimmering effect */
+.shimmer-button::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 25%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0) 75%);
+  animation: shimmer 2s infinite linear;
+  z-index: 1;
+}
+
+/* Ensures text stays above the effect */
+.shimmer-button span {
+  position: relative;
+  z-index: 2;
+}
+
+.shimmer-button:hover {
+  background: #b8aca0;
+}

@@ -64,7 +64,7 @@ const ECard: React.FC<ECardProps & { resetAppState: () => void }> = ({
                 <p>{eventDescription2}</p>
 
                 {/* RSVP & Reveal Buttons */}
-                <button onClick={onReveal}>Click here to find out the gender!</button>
+                <button className="shimmer-button" onClick={onReveal}>Discover the gender to unlock the registry!</button>
                 <button onClick={onRSVP}>Please RSVP by April 1st</button>
 
                 {/* Registry Link */}
