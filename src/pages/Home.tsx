@@ -11,7 +11,7 @@ type HomeProps = {
     setEligibility: (eligibility: boolean) => void; // Function to update global eligibility state
 };
 
-const Home: React.FC<HomeProps> = ({ userId, eligibility, setEligibility }) => {
+const Home: React.FC<HomeProps & { resetAppState: () => void }> = ({ userId, eligibility, setEligibility, resetAppState }) => {
 
     const [isModalOpen, setModalOpen] = useState(false);
     const [responseMessage, setResponseMessage] = useState(""); // Initialize state
@@ -62,20 +62,24 @@ const Home: React.FC<HomeProps> = ({ userId, eligibility, setEligibility }) => {
 
     return (
         <div>
-            <ECard
-                eventTitle="BABY"
-                eventSubtitle="in bloom"
-                eventDescription={"PLEASE JOIN US FOR A BABY SHOWER FOR"}
-                eventParents={"GIAN & MICHELLE CUADROS"}
-                eventDate="SATURDAY • APRIL 26TH • 11:30AM-2:00PM"
-                eventLocation={"AVALON AT MISSION BAY\n255 KING ST, 19TH FLOOR • SAN FRANCISCO, CA"}
-                eventDescription2={"Come enjoy lunch and games as we prepare\nto welcome their bundle of joy!"}
-                registryUrl="https://my.babylist.com/gc-and-mc"
-                isEligibleForRegistry={eligibility}
-                onRSVP={() => setModalOpen(true)}
-                onReveal={() => navigate("/game")}  
-                eventHost={"contact host with questions: (414) 379-1864 • beckylchiang@gmail.com"}
-            />
+
+                <ECard
+                    eventTitle="BABY"
+                    eventSubtitle="in bloom"
+                    eventDescription={"PLEASE JOIN US FOR A BABY SHOWER FOR"}
+                    eventParents={"GIAN & MICHELLE CUADROS"}
+                    eventDate="SATURDAY • APRIL 26TH • 11:30AM-2:00PM"
+                    eventLocation={"AVALON AT MISSION BAY\n255 KING ST, 19TH FLOOR • SAN FRANCISCO, CA"}
+                    eventDescription2={"Come enjoy lunch and games as we prepare\nto welcome their bundle of joy!"}
+                    registryUrl="https://my.babylist.com/gc-and-mc"
+                    isEligibleForRegistry={eligibility}
+                    onRSVP={() => setModalOpen(true)}
+                    onReveal={() => navigate("/game")}  
+                    eventHost={"contact host with questions: (414) 379-1864 • beckylchiang@gmail.com"}
+                    resetAppState={resetAppState}
+                />
+         
+            
             <RSVPModal
                 isOpen={isModalOpen}
                 onClose={() => setModalOpen(false)}

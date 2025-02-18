@@ -1,113 +1,149 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=Parisienne&display=swap');
 
-.ecard-image-top {
-  width: 118%;  /* Slightly wider than the card to extend over the sides */
-  height: auto; /* Keeps the aspect ratio */
-  display: block; /* Removes extra spacing */
-  position: relative;
-  margin-bottom: -42px; /* Optional: Overlaps into the card for aesthetic */
-  margin-top: -26px; /* Optional: Overlaps into the card for aesthetic */
-  left: 50%; /* 🟢 Moves the image’s left edge to the center of `.ecard` */
-  transform: translateX(-50%); /* 🟢 Shifts back to be truly centered */
-}
+/* 🌸 Floral Border Image */
 
 
+/* 📌 Centering the Card */
 .ecard-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* Ensures full screen height */
     background-color: #87a38f; /* Sage green */
-    padding: 16px;
+    padding: 2vw;
+    overflow: hidden;
+    flex-direction: column;
 }
 
+/* 🌸 Wrapper ensures the image aligns with the card */
+.ecard-image-wrapper {
+  width: 100%; /* 🔥 Ensures wrapper matches card width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Ensures no weird overflow */
+}
+
+
+/* 📌 Card Styling */
 .ecard {
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    padding: 32px;
-    max-width: 420px;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    width: 100%;
-    border: 1px solid #d3d7c4; /* Soft sage border */
+  display: flex;
+  flex-direction: column; /* 🔥 Stacks elements naturally */
+  align-items: center;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  max-width: 600px; /* Ensures card doesn't get too wide */
+  width: 80%;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  border: 2px solid #d3d7c4;
+  transform-origin: center;
 }
 
-/* "BABY": Huge but with tighter spacing */
+/* 🌸 Floral Image */
+.ecard-image-top {
+  width: 100%; /* 🔥 Ensures image scales with card */
+  height: auto;
+  display: block;
+  border-top-left-radius: 16px;  /* 🔥 Matches .ecard's border-radius */
+  border-top-right-radius: 16px;
+}
+
+
+/* 📌 Title Styling */
 .ecard h1 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400; /* Remove bold */
-  font-size: 68px; /* Keep it huge */
-  letter-spacing: 2px;
-  margin-bottom: 2px; /* Reduce spacing between BABY & in bloom */
-  color: #3e4a42; /* Dark charcoal for contrast */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: clamp(48px, 6vw, 72px); /* Dynamically scale */
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    margin-top: 0;
+    color: #3e4a42;
 }
 
-/* "in bloom": Large, warm brown, closer to BABY */
+/* 📌 Subtitle */
 .ecard h2 {
-  font-family: 'Parisienne', cursive;
-  font-size: 40px; /* Keep it large */
-  color: #6f5e4d; /* Warm brown for elegance */
-  margin-top: -8px; /* Bring it closer to BABY */
-  margin-bottom: 0px;
+    font-family: 'Parisienne', cursive;
+    font-size: clamp(30px, 4vw, 50px);
+    color: #6f5e4d;
+    margin-top: -4px;
+    margin-bottom: 0;
 }
 
-/* Default paragraph style (regular size) */
+/* 📜 Event Description */
 .ecard p {
-  font-size: 12.5px; /* Regular small size */
-  color: #5c6b60; /* Soft muted gray-green */
-  line-height: 1.3;
-  white-space: pre-wrap;
-  font-weight: 450;
+    font-size: clamp(12px, 1.8vw, 16px);
+    color: #5c6b60;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    font-weight: 450;
+    margin-top: 0;
 }
 
-/* Smaller text */
+/* 📜 Smaller Text */
 .ecard p.small-text {
-  font-size: 10px; /* Extra small */
-  color: #6a6a6a;
-  font-weight: 450;
+    font-size: clamp(10px, 1.5vw, 14px);
+    color: #6a6a6a;
+    font-weight: 450;
+    margin-top: 10px;
 }
 
-/* Slightly larger text for important details */
+/* 📜 Larger Text for Important Details */
 .ecard p.large-text {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400; /* Remove bold */
-  font-size: 19px; /* Slightly bigger */
-  margin-top: -2px; /* Bring it closer to description */
-  color: #4a4a4a; /* Darker for contrast */
-  font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: clamp(18px, 2vw, 22px);
+    color: #4a4a4a;
+    font-weight: 500;
 }
 
-/* RSVP & Reveal Buttons */
+/* 🎟️ RSVP & Reveal Buttons */
 .ecard button {
-  background: #d1c6b8; /* Neutral beige with a hint of gray */
-  color: #444e46; /* Dark muted green-gray */
-  border: none;
-  border-radius: 8px;
-  padding: 8px 16px; /* Make buttons slightly smaller */
-  font-size: 12.5px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  margin-top: 8px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
+    background: #d1c6b8;
+    color: #444e46;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: clamp(12px, 1.5vw, 16px);
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
 
 .ecard button:hover {
     background: #b8aca0;
 }
 
-/* Registry Link */
+/* 🎁 Registry Link */
 .ecard a {
     display: block;
     margin-top: 16px;
-    color: #6f5e4d; /* Warm brown to match subtitle */
+    color: #6f5e4d;
     font-weight: bold;
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
-    font-size: 12.5px;
+    font-size: clamp(12px, 1.5vw, 16px);
 }
 
 .ecard a:hover {
     text-decoration: underline;
+}
+
+/* 📍 Ensures text is close to the card */
+.rsvp-other {
+  font-size: 14px;
+  color: #6f5e4d; /* Matches warm brown theme */
+  text-align: center;
+
+  margin-top: 15px;
+  padding-top: 0 !important; /* 🔥 Ensures no padding above */
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.rsvp-other:hover {
+  color: #4a3c33; /* Darker brown on hover */
 }

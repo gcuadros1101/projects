@@ -1,6 +1,7 @@
 import React from "react";
 import "./ecard.css";
 import floralTop from "../../assets/images/flowers.png";
+import { useNavigate } from "react-router-dom";
 
 type ECardProps = {
     eventTitle: string;
@@ -17,7 +18,7 @@ type ECardProps = {
     onReveal?: () => void;
 };
 
-const ECard: React.FC<ECardProps> = ({
+const ECard: React.FC<ECardProps & { resetAppState: () => void }> = ({
     eventTitle,
     eventSubtitle,
     eventDescription,
@@ -29,13 +30,26 @@ const ECard: React.FC<ECardProps> = ({
     registryUrl,
     isEligibleForRegistry,
     onRSVP,
-    onReveal
+    onReveal,
+    resetAppState
 }) => {
+
+    const navigate = useNavigate(); // React Router hook for navigation
+
+     // 🔥 Function to clear local storage and navigate to login
+     const handleRSVPForSomeoneElse = () => {
+        resetAppState(); // 🔥 Clears state and localStorage
+        navigate("/login", { replace: true }); // 🔥 Ensure immediate navigation
+    };
+
     return (
         <div className="ecard-container">
             <div className="ecard">
                 {/* Floral Border Image at the Top & Sides */}
-                <img src={floralTop} alt="Floral Border" className="ecard-image-top" />
+            
+                <div className="ecard-image-wrapper">
+                    <img src={floralTop} alt="Floral Border" className="ecard-image-top" />
+                </div>
 
                 {/* Title */}
                 <h1>{eventTitle}</h1>
@@ -60,6 +74,10 @@ const ECard: React.FC<ECardProps> = ({
                 <p className="small-text">{eventHost}</p>
 
             </div>
+             {/* 🔥 Now this text stays right below the card */}
+             <p className="rsvp-other" onClick={handleRSVPForSomeoneElse}>
+                Click here to RSVP for someone else
+                </p>
         </div>
     );
 };

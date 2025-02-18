@@ -12,6 +12,12 @@ const App: React.FC = () => {
     const [isLoading, setIsLoading] = useState(true); 
     const [genderRevealOnly, setGenderRevealOnly] = useState<boolean>(false);
 
+    const resetAppState = () => {
+        localStorage.clear(); // 🔥 Clears all saved values
+        setUserId(null); // 🔥 Reset React state for userId
+        setEligibility(false); // 🔥 Reset eligibility state
+    };
+
     useEffect(() => {
         const savedGenderRevealOnly = localStorage.getItem("genderRevealOnly");
         if (savedGenderRevealOnly) {
@@ -101,7 +107,7 @@ const App: React.FC = () => {
                 ) : genderRevealOnly ? (
                     <Navigate to="/game" replace />
                 ) : (
-                    <Home userId={userId} eligibility={eligibility} setEligibility={setEligibility} />
+                    <Home userId={userId} eligibility={eligibility} setEligibility={setEligibility} resetAppState={resetAppState}/>
                 )
             }
         />
