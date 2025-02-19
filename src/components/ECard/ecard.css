@@ -151,7 +151,7 @@
 /* 📍 Ensures text is close to the card */
 .rsvp-other {
   font-size: 14px;
-  color: #6f5e4d;
+  color: #f5f5f5;
   text-align: center;
   margin-top: 15px;
   cursor: pointer;
@@ -162,7 +162,7 @@
 }
 
 .rsvp-other:hover {
-  color: #4a3c33; /* Darker brown on hover */
+  color: #6f5e4d; /* Darker brown on hover */
 }
 
 @keyframes shimmer {
