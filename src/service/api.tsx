@@ -82,3 +82,13 @@ export async function updateRSVP(userId: string, rsvp: boolean, dietaryRestricti
     }
     return null;
 }
+
+export async function fetchRSVPNames() {
+    const res: ApiResponse = await callAPI("getRSVPYes", "POST", {});
+
+    if (res && res.body) {
+        return res.body as string[]; // Return the list of names
+    }
+    
+    return [];
+}

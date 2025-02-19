@@ -58,11 +58,22 @@
 .ecard h1 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
-    font-size: clamp(48px, 6vw, 72px); /* Dynamically scale */
-    letter-spacing: 2px;
-    margin-bottom: 5px;
-    margin-top: 0;
+    font-size: clamp(64px, 7.5vw, 96px); /* 🔥 Increased max size */
+    letter-spacing: 5px; /* 🔥 Slightly wider spacing */
+    margin-bottom: -2px;
+    margin-top: -2px;
     color: #3e4a42;
+}
+
+/* 📌 Adjust "Who's Coming?" title size */
+.flip-card-back h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: clamp(28px, 3.5vw, 42px); /* 🔥 Slightly smaller max size */
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+  margin-top: 0;
+  color: #3e4a42;
 }
 
 /* 📌 Subtitle */
@@ -71,7 +82,7 @@
     font-size: clamp(30px, 4vw, 50px);
     color: #6f5e4d;
     margin-top: -4px;
-    margin-bottom: 0;
+    margin-bottom: -2px;
 }
 
 /* 📜 Event Description */
@@ -81,7 +92,7 @@
     line-height: 1.4;
     white-space: pre-wrap;
     font-weight: 450;
-    margin-top: 0;
+    margin-top: -4px;
 }
 
 /* 📜 Smaller Text */
@@ -89,16 +100,16 @@
     font-size: clamp(10px, 1.5vw, 14px);
     color: #6a6a6a;
     font-weight: 450;
-    margin-top: 10px;
+    margin-top: 4px;
 }
 
 /* 📜 Larger Text for Important Details */
 .ecard p.large-text {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: clamp(18px, 2vw, 22px);
+    font-size: clamp(19px, 2vw, 24px);
     color: #4a4a4a;
-    font-weight: 500;
+    font-weight: 550;
+    letter-spacing: 1.5px;
 }
 
 /* 🎟️ RSVP & Reveal Buttons */
@@ -111,7 +122,8 @@
     font-size: clamp(12px, 1.5vw, 16px);
     cursor: pointer;
     transition: background 0.3s ease;
-    margin-top: 10px;
+    margin-top: 6px;
+    margin-bottom: 10px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
 }
@@ -123,7 +135,8 @@
 /* 🎁 Registry Link */
 .ecard a {
     display: block;
-    margin-top: 16px;
+    margin-top: 6px;
+    margin-bottom: 10px;
     color: #6f5e4d;
     font-weight: bold;
     text-decoration: none;
@@ -255,6 +268,55 @@
   transform: rotate(180deg);
 }
 
+/* 📌 Adjust RSVP List */
+.rsvp-list {
+  list-style-type: decimal; /* 🔥 Ensures numbered list (1, 2, 3...) */
+  list-style-position: inside; /* ✅ Moves numbers inside the padding */
+  text-align: left; /* 🔥 Aligns text to the left */
+  padding: 10px 20px; /* ✅ Adds left and right padding */
+  margin-top: 10px;
+  font-size: 16px;
+  color: #4a4a4a;
+  max-height: 250px; /* 🔥 Increases scrollable area */
+  overflow-y: auto; /* 🔥 Enables vertical scrolling */
+  border-radius: 10px; /* 🔥 Softer corners */
+  background: #ffffff; /* 🔥 Clean, white background */
+  width: 75%; /* 🔥 Wider list to take up more space */
+  min-width: 220px;
+  max-width: 75%; /* 🔥 Ensures responsiveness */
+  border: 1px solid #ccc;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); /* 🔥 Subtle shadow */
+}
+
+/* Individual list items */
+.rsvp-list li {
+  font-size: 14px;
+  padding-left: 5px; /* ✅ Extra spacing for text */
+  margin-bottom: 6px; /* 🔥 Adds space between names */
+  font-weight: 500; /* 🔥 Makes names stand out */
+  line-height: 1.4;
+}
+
+/* Scrollbar Styling for RSVP List (Modern Look) */
+.rsvp-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.rsvp-list::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 10px;
+}
+
+.rsvp-list::-webkit-scrollbar-thumb {
+  background: #b8aca0;
+  border-radius: 10px;
+}
+
+.rsvp-list::-webkit-scrollbar-thumb:hover {
+  background: #a8978c;
+}
+
+
 /* 🌸 Mobile Adjustments */
 @media (max-width: 768px) {
 
@@ -264,15 +326,20 @@
 
   /* 📌 Reduce Title & Text Sizes */
   .ecard h1 {
-    font-size: clamp(32px, 5vw, 48px); /* Shrink main title */
+    font-size: clamp(34px, 5.2vw, 52px); /* 🔥 Scale down slightly */
+  }
+
+  .flip-card-back h1 {
+    font-size: clamp(28px, 3.5vw, 42px); /* 🔥 Slightly smaller max size */
   }
 
   .ecard h2 {
-    font-size: clamp(20px, 4vw, 36px); /* Shrink subtitle */
+    font-size: clamp(22px, 4vw, 38px); /* 🔥 Keep elegant but balanced */
   }
 
   .ecard p {
-    font-size: clamp(10px, 1.5vw, 14px); /* Reduce paragraph text */
+    font-size: clamp(11px, 1.5vw, 15px); /* 🔥 Prevent text from feeling too cramped */
+    line-height: 1.4; /* 🔥 Improve readability */
   }
 
   .ecard p.small-text {
@@ -280,7 +347,7 @@
   }
 
   .ecard p.large-text {
-    font-size: clamp(14px, 2vw, 18px);
+    font-size: clamp(15px, 2vw, 20px);
   }
 
   /* 📌 Shrink Padding & Adjust Layout */
@@ -317,17 +384,10 @@
     min-height: 100%; /* Ensure consistent height */
   }
 
-  /* 📌 Adjust RSVP List */
-  .rsvp-list {
-    padding: 4vw;
+  .scroll-hint {
+    font-size: 12px;
   }
 
-  .rsvp-list li {
-    font-size: 14px;
-    width: 90%;
-    padding: 4px;
-    margin: 2px 0;
-  }
 }
 
 

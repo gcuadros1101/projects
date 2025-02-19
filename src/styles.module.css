@@ -17,7 +17,7 @@
     padding: calc(12px + 3vmin);
     font-size: calc(10px + 2vmin);
     font-weight: bold;
-    background: linear-gradient(135deg, #f8c7ff, #acd8ff);  /* lightblue; */
+    background: linear-gradient(45deg, #fce5ff, #cde7fe);  /* lightblue; */
     text-transform: uppercase;
     touch-action: none;
   }

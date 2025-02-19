@@ -82,7 +82,7 @@ const ECard: React.FC<ECardProps & { resetAppState: () => void }> = ({
                     <div className="flip-card-back">
                         <div className="ecard">
                             <h1>Who's Coming?</h1>
-                            <ul className="rsvp-list">
+                            <ol className="rsvp-list">
                                 {rsvpList.length > 0 ? (
                                     rsvpList.map((name, index) => (
                                         <li key={index}>{name}</li>
@@ -90,7 +90,7 @@ const ECard: React.FC<ECardProps & { resetAppState: () => void }> = ({
                                 ) : (
                                     <p>No RSVPs yet</p>
                                 )}
-                            </ul>
+                            </ol>
                             <button className="flip-btn" onClick={toggleFlip}>Go Back</button>
                         </div>
                     </div>

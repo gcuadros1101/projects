@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ECard from "../components/ECard/ECard";
 import RSVPModal from "../components/RSVPModal/RSVPModal";
 import Toast from "../components/Toast"; 
-import { fetchUserEligibility, updateRSVP } from "../service/api";
+import { fetchUserEligibility, updateRSVP, fetchRSVPNames } from "../service/api";
 
 type HomeProps = {
     userId: string; // User ID passed as a prop
@@ -15,6 +15,8 @@ const Home: React.FC<HomeProps & { resetAppState: () => void }> = ({ userId, eli
 
     const [isModalOpen, setModalOpen] = useState(false);
     const [responseMessage, setResponseMessage] = useState(""); // Initialize state
+    const [rsvpList, setRsvpList] = useState<string[]>([]); // 🔥 Store RSVP'd names
+
     const navigate = useNavigate(); // React Router hook for navigation
 
     console.log(`userId: ${userId}`);
@@ -29,7 +31,18 @@ const Home: React.FC<HomeProps & { resetAppState: () => void }> = ({ userId, eli
             }
         };
 
+        const loadRSVPList = async () => {
+            try {
+                const names = await fetchRSVPNames();
+                setRsvpList(names);
+            } catch (error) {
+                console.error("Error fetching RSVP list:", error);
+            }
+        };
+
         fetchEligibility();
+        loadRSVPList(); // 🔥 Fetch RSVP names when component mounts
+
     }, [userId, setEligibility]);
 
     console.log(`fetchedEligibility: ${eligibility}`);
@@ -45,6 +58,11 @@ const Home: React.FC<HomeProps & { resetAppState: () => void }> = ({ userId, eli
                 ? "Thank you for your RSVP! We're excited to see you there!"
                 : "We're sorry you can't make it, but thank you for letting us know!"
             );
+
+            if (rsvp) {
+                const updatedNames = await fetchRSVPNames(); // 🔥 Refresh list after RSVP
+                setRsvpList(updatedNames);
+            }
 
         } catch (error) {
             if (error instanceof Error) {
@@ -77,6 +95,7 @@ const Home: React.FC<HomeProps & { resetAppState: () => void }> = ({ userId, eli
                     onReveal={() => navigate("/game")}  
                     eventHost={"contact host with questions: (414) 379-1864 • beckylchiang@gmail.com"}
                     resetAppState={resetAppState}
+                    rsvpList={rsvpList} // 🔥 Pass RSVP list to ECard
                 />
          
             
