@@ -21,7 +21,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* Ensures no weird overflow */
+  overflow: visible; /* Ensures no weird overflow */
 }
 
 
@@ -29,16 +29,19 @@
 .ecard {
   display: flex;
   flex-direction: column; /* 🔥 Stacks elements naturally */
+  justify-content: center;
   align-items: center;
   background: #ffffff;
   border-radius: 16px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   max-width: 600px; /* Ensures card doesn't get too wide */
-  width: 80%;
+  width: 100%;
+  height: 100%;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
   border: 2px solid #d3d7c4;
   transform-origin: center;
+  overflow: hidden; 
 }
 
 /* 🌸 Floral Image */
@@ -135,13 +138,14 @@
 /* 📍 Ensures text is close to the card */
 .rsvp-other {
   font-size: 14px;
-  color: #6f5e4d; /* Matches warm brown theme */
+  color: #6f5e4d;
   text-align: center;
-
   margin-top: 15px;
-  padding-top: 0 !important; /* 🔥 Ensures no padding above */
   cursor: pointer;
   text-decoration: underline;
+  display: block; /* Ensures visibility */
+  width: 100%;
+  z-index: 10; /* Ensure it stays above other elements */
 }
 
 .rsvp-other:hover {
@@ -192,3 +196,138 @@
 .shimmer-button:hover {
   background: #b8aca0;
 }
+
+/* 🌸 Flip Card Structure */
+.flip-card {
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  aspect-ratio: 5 / 7; /* Ensures both front and back maintain consistent height */
+  perspective: 1500px;
+  display: flex;
+  align-items: center; /* Centers content inside */
+  justify-content: center;
+}
+
+/* Inner Flip Mechanism */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease-in-out;
+}
+
+/* Flipping Logic */
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Front & Back Cards */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensures Back Card Rotates */
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+.flip-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  transition: transform 0.3s ease-in-out;
+  z-index: 10; /* Ensure it stays above other elements */
+}
+
+.flip-icon:hover {
+  transform: rotate(180deg);
+}
+
+/* 🌸 Mobile Adjustments */
+@media (max-width: 768px) {
+
+  .shimmer-button {
+    margin-bottom: 10px; /* Adds space between buttons */
+  }
+
+  /* 📌 Reduce Title & Text Sizes */
+  .ecard h1 {
+    font-size: clamp(32px, 5vw, 48px); /* Shrink main title */
+  }
+
+  .ecard h2 {
+    font-size: clamp(20px, 4vw, 36px); /* Shrink subtitle */
+  }
+
+  .ecard p {
+    font-size: clamp(10px, 1.5vw, 14px); /* Reduce paragraph text */
+  }
+
+  .ecard p.small-text {
+    font-size: clamp(8px, 1.2vw, 12px);
+  }
+
+  .ecard p.large-text {
+    font-size: clamp(14px, 2vw, 18px);
+  }
+
+  /* 📌 Shrink Padding & Adjust Layout */
+  .ecard {
+    padding: 0; /* Reduce padding */
+  }
+
+  .ecard button {
+    padding: 8px 10px; /* Smaller buttons */
+    font-size: clamp(10px, 1.5vw, 14px);
+    margin-top: 0;
+  }
+
+  .ecard a {
+    font-size: clamp(10px, 1.5vw, 14px);
+  }
+
+  .rsvp-other {
+    font-size: clamp(10px, 1.5vw, 14px);
+    margin-top: 0;
+  }
+
+  /* 📌 Ensure Back Card Matches Front Card */
+  .flip-card {
+    width: 90%; /* Maintain consistent width */
+    min-height: 90vh; /* Ensure card fills screen */
+  }
+
+  .flip-card-inner {
+    min-height: 100%; /* Match front & back */
+  }
+
+  .flip-card-front, .flip-card-back {
+    min-height: 100%; /* Ensure consistent height */
+  }
+
+  /* 📌 Adjust RSVP List */
+  .rsvp-list {
+    padding: 4vw;
+  }
+
+  .rsvp-list li {
+    font-size: 14px;
+    width: 90%;
+    padding: 4px;
+    margin: 2px 0;
+  }
+}
+
+
