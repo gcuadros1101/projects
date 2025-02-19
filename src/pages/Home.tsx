@@ -88,7 +88,7 @@ const Home: React.FC<HomeProps & { resetAppState: () => void }> = ({ userId, eli
                     eventParents={"GIAN & MICHELLE CUADROS"}
                     eventDate="SATURDAY • APRIL 26TH • 11:30AM-2:00PM"
                     eventLocation={"AVALON AT MISSION BAY\n255 KING ST, 19TH FLOOR • SAN FRANCISCO, CA"}
-                    eventDescription2={"Come enjoy lunch and games as we prepare\nto welcome their bundle of joy!"}
+                    eventDescription2={"Come enjoy lunch and games as we prepare\nto welcome their baby in bloom!"}
                     registryUrl="https://my.babylist.com/gc-and-mc"
                     isEligibleForRegistry={eligibility}
                     onRSVP={() => setModalOpen(true)}
