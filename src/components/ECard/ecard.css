@@ -236,6 +236,24 @@
   transform: rotateY(180deg);
 }
 
+/* Ensure front is fully hidden when flipped */
+.flip-card.flipped .flip-card-front {
+  visibility: hidden;  /* Hide visually */
+  pointer-events: none;  /* Prevent interactions */
+}
+
+/* Ensure back is fully interactive when flipped */
+.flip-card.flipped .flip-card-back {
+  visibility: visible;
+  pointer-events: auto; /* Ensure interactions work */
+}
+
+/* Optional: Completely remove front when flipped */
+.flip-card.flipped .flip-card-front {
+  display: none; /* Prevent ghost clicks */
+}
+
+
 /* Front & Back Cards */
 .flip-card-front, .flip-card-back {
   position: absolute;
