@@ -241,6 +241,11 @@
   pointer-events: none;  /* Prevent interactions */
 }
 
+/* Disable shimmer effect when flipped */
+.flip-card.flipped .shimmer-button::before {
+  display: none;
+}
+
 /* Ensure back is fully interactive when flipped */
 .flip-card.flipped .flip-card-back {
   visibility: visible;
