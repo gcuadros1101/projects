@@ -40,6 +40,7 @@ const GamePage: React.FC<GamePageProps>= ({ userId, genderRevealOnly, setEligibi
     return (
         <div className="GamePage-container">
             <h1>Solve the Puzzle</h1>
+            <p>drag tiles left and right to solve the anagram</p>
             <div className="draggable-list-wrapper">
                  <DraggableList items={'K N H T I'.split(' ')} onOrderChange={setIsFirstListCorrect} targetWord="THINK" />
                  <DraggableList items={'K N P I'.split(' ')} onOrderChange={setIsSecondListCorrect} targetWord="PINK" />

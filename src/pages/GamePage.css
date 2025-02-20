@@ -30,3 +30,9 @@
   width: 100%;
   z-index: 1; /* Prevents it from floating above other content */
 }
+
+.GamePage-container p {
+  margin-top: 0px;  /* Adjust the top margin */
+  margin-bottom: 0px;  /* Adjust the bottom margin */
+  padding: 0; /* Ensure no extra padding */
+}
