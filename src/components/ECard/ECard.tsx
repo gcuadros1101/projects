@@ -68,7 +68,7 @@ const ECard: React.FC<ECardProps & { resetAppState: () => void }> = ({
                             <p className="small-text">{eventLocation}</p>
                             <p>{eventDescription2}</p>
 
-                            <button className="shimmer-button" onClick={onReveal}>Discover gender to unlock registry!</button>
+                            <button className="shimmer-button" onClick={onReveal}>Discover gender and unlock registry!</button>
                             <button onClick={onRSVP}>Please RSVP by April 1st</button>
 
                             {isEligibleForRegistry && (
