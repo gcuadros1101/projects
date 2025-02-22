@@ -82,7 +82,7 @@
 }
 
 .game-completion-message1 {
-  color: pink;
+  color: rgb(255, 202, 241);
   font-size: clamp(1.5rem, 5vw, 3rem); /* Dynamically scales */
   margin-top: calc(15px + 6vmin);
   text-align: center;
@@ -97,7 +97,7 @@
 }
 
 .game-completion-message2 {
-  color: pink;
+  color: rgb(255, 202, 241);
   font-size: clamp(1.2rem, 5vw, 2.5rem); /* Slightly bigger */
   margin-top: calc(10px + 4vmin);
   text-align: center;
