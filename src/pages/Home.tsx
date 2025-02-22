@@ -59,10 +59,8 @@ const Home: React.FC<HomeProps & { resetAppState: () => void }> = ({ userId, eli
                 : "We're sorry you can't make it, but thank you for letting us know!"
             );
 
-            if (rsvp) {
-                const updatedNames = await fetchRSVPNames(); // 🔥 Refresh list after RSVP
-                setRsvpList(updatedNames);
-            }
+            const updatedNames = await fetchRSVPNames(); // 🔥 Refresh list after RSVP
+            setRsvpList(updatedNames);
 
         } catch (error) {
             if (error instanceof Error) {
